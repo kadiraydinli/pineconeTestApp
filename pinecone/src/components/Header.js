@@ -29,9 +29,9 @@ const Header = (props) => {
     } = props;
 
     const centerPlacementValue = (
-        !placement && (titlePlacement || subTitlePlacement) ? null : 
-        placement === "left" ? "flex-start" : 
-        placement === "right" ? "flex-end" : placement
+        !placement && (titlePlacement || subTitlePlacement) ? null :
+            placement === "left" ? "flex-start" :
+                placement === "right" ? "flex-end" : placement
     )
 
     const titlePlacementValue = (
@@ -47,24 +47,24 @@ const Header = (props) => {
             <StatusBar backgroundColor={statusbarColor} {...statusbarProps} />
             <View style={[{ backgroundColor: backgroundColor }, styles.Header, containerStyle]}>
                 <View style={[styles.Views, leftContainerStyle]}>
-                    {!leftContainer && iconLeft ? 
-                    (<IconButton {...iconLeft} />) : 
-                    (leftContainer)}
+                    {!leftContainer && iconLeft ?
+                        (<IconButton {...iconLeft} />) :
+                        (leftContainer)}
                 </View>
                 <View style={[{ justifyContent: "center", alignItems: centerPlacementValue }, centerContainerStyle]}>
-                {!centerContainer ? (<>
-                    <Text style={[{ fontSize: 25, textAlign: titlePlacementValue, color: titleColor }, titleStyle]}>
-                        {title}
-                    </Text>
-                    {subTitle ? 
-                        <Text style={[{ fontSize: 15, textAlign: subTitlePlacementValue, color: subTitleColor }, subTitleStyle]}>
-                            {subTitle}
-                        </Text> : null}
+                    {!centerContainer ? (<>
+                        <Text style={[{ fontSize: 25, textAlign: titlePlacementValue, color: titleColor }, titleStyle]}>
+                            {title}
+                        </Text>
+                        {subTitle ?
+                            <Text style={[{ fontSize: 15, textAlign: subTitlePlacementValue, color: subTitleColor }, subTitleStyle]}>
+                                {subTitle}
+                            </Text> : null}
                     </>) : (centerContainer)}
                 </View>
                 <View style={[styles.Views, rightContainerStyle]}>
-                    {!rightContainer && iconRight ? (<IconButton {...iconRight} />) : 
-                    (<>{rightContainer}</>)}
+                    {!rightContainer && iconRight ? (<IconButton {...iconRight} />) :
+                        (<>{rightContainer}</>)}
                 </View>
             </View>
         </>

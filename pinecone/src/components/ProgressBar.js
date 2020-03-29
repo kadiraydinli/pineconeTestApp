@@ -48,7 +48,7 @@ const ProgressBar = (props) => {
     }*/
 
     useEffect(() => {
-        if(indeterminate) {
+        if (indeterminate) {
             indeterminateAnimation();
         }
         else {
@@ -85,12 +85,12 @@ const ProgressBar = (props) => {
 
     return (
         <View onLayout={handledOnLayout} style={[ProgressBarStyle, containerStyle]} {...rest}>
-            <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: filledColor, width: progressValue}]} />
-            {showText ? 
-                <Text style={[{textAlign: "center", color: "gray"}, textStyle]} {...textProps}>
-                    {text ? text : value / maxValue *100 + "%"}
-                </Text> 
-            : null}
+            <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: filledColor, width: progressValue }]} />
+            {showText ?
+                <Text style={[{ textAlign: "center", color: "gray" }, textStyle]} {...textProps}>
+                    {text ? text : value / maxValue * 100 + "%"}
+                </Text>
+                : null}
         </View>
     )
 };
@@ -127,7 +127,7 @@ ProgressBar.defaultProps = {
     textStyle: {},
     borderStyle: { borderWidth: 1, borderColor: "blue", borderRadius: 30 },
     containerStyle: {},
-    onComplete: () => {}
+    onComplete: () => { }
 };
 
 export default ProgressBar;

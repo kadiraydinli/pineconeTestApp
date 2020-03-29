@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, ScrollView, Image, Dimensions, Animated } from 'react-native';
 
@@ -7,11 +7,11 @@ const SCROLLVIEW_REF = 'scrollview';
 //var timerId;
 
 function _startAutoPlay() {
-    this.timerId = setInterval(_goToNext,1000);
+    this.timerId = setInterval(_goToNext, 1000);
 }
 
 function _stopAutoPlay() {
-    if(this.timerId) {
+    if (this.timerId) {
         clearInterval(this.timerId);
         this.timerId = null;
     }
@@ -19,7 +19,7 @@ function _stopAutoPlay() {
 
 function _goToNext() {
     let nextIndex = this._currentIndex + 1 % this._childrenCount;
-    this.refs[SCROLLVIEW_REF].scrollTo({x:200*nextIndex})
+    this.refs[SCROLLVIEW_REF].scrollTo({ x: 200 * nextIndex })
 }
 
 function _onScroll(event) {
@@ -38,7 +38,7 @@ const Slider = (props) => {
     } = props;
 
     useEffect(() => {
-        if(autoPlay) _startAutoPlay();
+        if (autoPlay) _startAutoPlay();
     }, []);
 
     return (
@@ -49,7 +49,7 @@ const Slider = (props) => {
                 snapToEnd
                 pagingEnabled>
                 {images.map(image => (
-                    <Image resizeMode="cover" source={{ uri: image}} key={image} style={styles.image} />
+                    <Image resizeMode="cover" source={{ uri: image }} key={image} style={styles.image} />
                 ))}
             </ScrollView>
             <View style={styles.circleView}>

@@ -25,10 +25,12 @@ const Modal = (props) => {
         <RNModal visible={visible} animationType="fade" onRequestClose={onRequestClose} transparent {...rest}>
             <View style={{ flex: 1, justifyContent: "center" }}>
                 <TouchableOpacity activeOpacity={1} style={styles.touch} onPress={onRequestClose} />
-                <View style={StyleSheet.flatten([styles.Modal, {backgroundColor: backgroundColor,
+                <View style={StyleSheet.flatten([styles.Modal, {
+                    backgroundColor: backgroundColor,
                     borderWidth: borderStyle.thickness, borderRadius: borderStyle.radius,
-                    borderColor: borderStyle.color}])}>
-                       {children}
+                    borderColor: borderStyle.color
+                }])}>
+                    {children}
                 </View>
             </View>
         </RNModal>
@@ -50,7 +52,7 @@ Modal.defaultProps = {
     width: width / 1.3,
     height: null,
     backgroundColor: "white",
-    borderStyle: {thickness: 1, color: "transparent", radius: 10},
+    borderStyle: { thickness: 1, color: "transparent", radius: 10 },
     onRequestClose: {},
     containerStyle: {}
 };

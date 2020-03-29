@@ -1,16 +1,16 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Image,
-  Dimensions,
-  Animated,
+    StyleSheet,
+    View,
+    ScrollView,
+    Image,
+    Dimensions,
+    Animated,
 } from 'react-native';
 
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 const SIZE = width * 0.9;
 const TICK_INTERVAL = 1000;
 
@@ -18,8 +18,8 @@ const Clock = props => {
     const [index, setIndex] = useState(new Animated.Value(0));
     const [tick, setTick] = useState(new Animated.Value(0));
     const [scales, setScales] = useState([...Array(6).keys()].map(() => new Animated.Value(0)));
-    const {scales: [smallQuadrant, mediumQuadrant, bigQuadrant, secondsScale, minutesScale, hoursScale]} = scales
-    
+    const { scales: [smallQuadrant, mediumQuadrant, bigQuadrant, secondsScale, minutesScale, hoursScale] } = scales
+
     const secondDegrees = Animated.multiply(index, 6);
 
     const interpolated = {
@@ -28,17 +28,17 @@ const Clock = props => {
     }
 
     const transformSeconds = {
-        transform: [{rotate: secondDegrees.interpolate(interpolated)}, {scale: secondsScale}]
+        transform: [{ rotate: secondDegrees.interpolate(interpolated) }, { scale: secondsScale }]
     }
 
     const rotateMinutes = Animated.divide(secondDegrees, new Animated.Value(60));
     const transformMinutes = {
-        transform: [{ rotate: rotateMinutes.interpolate(interpolated)}, {scale: minutesScale}]
+        transform: [{ rotate: rotateMinutes.interpolate(interpolated) }, { scale: minutesScale }]
     }
 
     const rotateHours = Animated.divide(rotateMinutes, new Animated.Value(12));
     const transformHours = {
-      transform: [{rotate: rotateHours.interpolate(interpolated)}, {scale: hoursScale}],
+        transform: [{ rotate: rotateHours.interpolate(interpolated) }, { scale: hoursScale }],
     };
 
     let _timer = 0;
@@ -84,22 +84,22 @@ const Clock = props => {
         ]).start()
     }
 
-  return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.bigQuadrant, {transform: [{scale: bigQuadrant}]}]} />
-      <Animated.View style={[styles.mediumQuadrant, {transform: [{scale: mediumQuadrant}]}]} />
-      <Animated.View style={[styles.mover, transformHours]}>
-        <View style={[styles.hours]} />
-      </Animated.View>
-      <Animated.View style={[styles.mover, transformMinutes]}>
-        <View style={[styles.minutes]} />
-      </Animated.View>
-      <Animated.View style={[styles.mover, transformSeconds]}>
-        <View style={[styles.seconds]} />
-      </Animated.View>
-      <Animated.View style={[styles.smallQuadrant, {transform: [{scale: smallQuadrant}]}]} />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Animated.View style={[styles.bigQuadrant, { transform: [{ scale: bigQuadrant }] }]} />
+            <Animated.View style={[styles.mediumQuadrant, { transform: [{ scale: mediumQuadrant }] }]} />
+            <Animated.View style={[styles.mover, transformHours]}>
+                <View style={[styles.hours]} />
+            </Animated.View>
+            <Animated.View style={[styles.mover, transformMinutes]}>
+                <View style={[styles.minutes]} />
+            </Animated.View>
+            <Animated.View style={[styles.mover, transformSeconds]}>
+                <View style={[styles.seconds]} />
+            </Animated.View>
+            <Animated.View style={[styles.smallQuadrant, { transform: [{ scale: smallQuadrant }] }]} />
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({

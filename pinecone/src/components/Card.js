@@ -31,7 +31,7 @@ const Card = (props) => {
 
     return (
         <TouchableOpacity onPress={onPress} {...rest}
-            style={StyleSheet.flatten([styles.Card, {width: widthValue, elevation: shadow}, containerStyle])}>
+            style={StyleSheet.flatten([styles.Card, { width: widthValue, elevation: shadow }, containerStyle])}>
             <View>
                 <Image source={image} style={imageStyle} {...rest} />
                 <Text style={[styles.imageTitle, imageTitleStyle]}>{imageTitle}</Text>
@@ -66,7 +66,7 @@ Card.defaultProps = {
     content: "",
     contentStyle: {},
     image: {},
-    imageStyle: {width: 200, height: 150},
+    imageStyle: { width: 200, height: 150 },
     imageTitle: "",
     imageTitleStyle: {},
     shadow: 2,

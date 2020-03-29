@@ -10,6 +10,7 @@ import Snackbar from "./components/Snackbar";
 import Toast from "./components/Toast";
 import Input from "./components/Input";
 import Header from "./components/Header";
+import Icon from "./components/Icon";
 import IconButton from "./components/IconButton";
 import Fab from "./components/Fab";
 
@@ -29,6 +30,7 @@ export {
     Toast,
     Input,
     Header,
+    Icon,
     IconButton,
     Fab,
     Slider,

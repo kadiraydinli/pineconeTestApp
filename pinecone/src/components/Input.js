@@ -43,11 +43,11 @@ const Input = (props) => {
     }, [isFocused]);
 
     handleFocus = () => {
-        if (disabled || !props.editable)  return;
+        if (disabled || !props.editable) return;
         setIsFocused(true)
     };
     handleBlur = () => {
-        if (disabled || !props.editable)  return;
+        if (disabled || !props.editable) return;
         setIsFocused(false)
     };
 
@@ -72,7 +72,7 @@ const Input = (props) => {
             outputRange: ["#aaa", editedColor]
         }),
     };
-    
+
     const selectionType = (
         type === "outlined" ? {
             borderRadius: 4,
@@ -85,20 +85,20 @@ const Input = (props) => {
                 outputRange: ['#7F7F7F', editedColor]
             })
         } : {
-            borderBottomWidth: animation.interpolate({
-                inputRange: [0, 1],
-                outputRange: [1, 2]
-            }),
-            borderBottomColor: animation.interpolate({
-                inputRange: [0, 1],
-                outputRange: ['#7F7F7F', editedColor]
-            })
-        }
+                borderBottomWidth: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 2]
+                }),
+                borderBottomColor: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['#7F7F7F', editedColor]
+                })
+            }
     )
 
     return (
         <View style={[styles.Container]}>
-            <Animated.View style={[selectionType, {paddingTop: 5, backgroundColor: backgroundColor}]}>
+            <Animated.View style={[selectionType, { paddingTop: 5, backgroundColor: backgroundColor }]}>
                 <Animated.View style={labelPosition}>
                     {(type === "outlined" && (isFocused || value.length != 0) && label.length != 0) &&
                         <View style={[styles.labelBackground, { backgroundColor: backgroundColor == "transparent" ? "white" : backgroundColor }]} />
@@ -127,8 +127,8 @@ const Input = (props) => {
                         type={iconRight.type} onPress={iconRight.onPress} />}
                 </View>
             </Animated.View>
-            <View style={{flexDirection: "row", justifyContent: "space-between", paddingLeft: 12, paddingRight: 8}}>
-                <Text style={[{color: !disabled ? (errorText ? "#b00020ff" : "#000") : disabledColor}, helperTextStyle, errorTextStyle]}>{helperText || errorText}</Text>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", paddingLeft: 12, paddingRight: 8 }}>
+                <Text style={[{ color: !disabled ? (errorText ? "#b00020ff" : "#000") : disabledColor }, helperTextStyle, errorTextStyle]}>{helperText || errorText}</Text>
                 {characterCounter && <Text>{value.length} / {maxLength}</Text>}
             </View>
         </View>

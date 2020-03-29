@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Animated, Platform, TouchableWithoutFeedback } from 'react-native';
-import { Text, IconButton } from '..';
+import { Text, Icon } from '..';
 
 const Fab = (props) => {
     const {
@@ -119,7 +119,7 @@ const Fab = (props) => {
                         <Animated.Text style={[styles.label, labelStyle]}>{value.label}</Animated.Text>
                         {value.text ? (
                             <Text style={value.textStyle}>{value.text}</Text>
-                        ) : (<IconButton name={value.icon} color={value.iconColor} size={value.iconSize}
+                        ) : (<Icon name={value.icon} color={value.iconColor} size={value.iconSize}
                             type={value.iconType} {...value.iconProps} />)}
                     </Animated.View>
                 </TouchableWithoutFeedback>
@@ -129,7 +129,7 @@ const Fab = (props) => {
                     <Animated.Text style={[styles.label, labelStyle]}>{label}</Animated.Text>
                     {text ? (
                         <Text style={textStyle}>{text}</Text>
-                    ) : icon ? (<IconButton name={icon.name} color={icon.color}
+                    ) : icon ? (<Icon name={icon.name} color={icon.color}
                         size={icon.size} type={icon.type} {...icon.props} />) : null}
                 </View>
             </TouchableWithoutFeedback>

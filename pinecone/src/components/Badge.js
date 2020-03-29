@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, View} from 'react-native';
-import {Text} from '..';
+import { StyleSheet, View } from 'react-native';
+import { Text } from '..';
 
 const Badge = (props) => {
     const {
@@ -16,11 +16,11 @@ const Badge = (props) => {
         style,
     } = props;
 
-    return(
-        <View style={StyleSheet.flatten([styles.badge, color && {backgroundColor: color},
-            primary && { backgroundColor: '#2457ff' }, success && { backgroundColor: '#19ff5a' },
-            info && { backgroundColor: '#24dbff' }, warning && { backgroundColor: '#ffc619' },
-            danger && { backgroundColor: '#c41d1d' }, style ])}>
+    return (
+        <View style={StyleSheet.flatten([styles.badge, color && { backgroundColor: color },
+        primary && { backgroundColor: '#2457ff' }, success && { backgroundColor: '#19ff5a' },
+        info && { backgroundColor: '#24dbff' }, warning && { backgroundColor: '#ffc619' },
+        danger && { backgroundColor: '#c41d1d' }, style])}>
             <Text style={StyleSheet.flatten([{ fontSize: 12, color: "white" }, valueStyle])}>{value}</Text>
         </View>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Platform, TouchableOpacity, TouchableHighlight } from 'react-native';
-import {Icons} from "../config/Icons";
+import { Icon } from "..";
 
 const IconButton = (props) => {
     const {
@@ -16,20 +16,18 @@ const IconButton = (props) => {
         disabled,
         disabledStyle,
         type,
-        Component = onPress ? (onLongPress ? TouchableHighlight : TouchableOpacity) : 
+        Component = onPress ? (onLongPress ? TouchableHighlight : TouchableOpacity) :
             onLongPress ? TouchableHighlight : View,
-        privateSize // {x, y}
+        privateSize, //{x, y}
     } = props;
 
-    const IconComponent = Icons(type || "FontAwesome");
-
-    const privateSizeValue = privateSize ? privateSize : size * 2;
+    const privateSizeValue = privateSize ? privateSize.size : size * 2;
 
     return (
         <Component disabled={disabled} onPress={onPress} onLongPress={onLongPress} underlayColor={onLongPressUnderlayColor}
             style={[{ width: privateSizeValue, height: privateSizeValue, backgroundColor: backgroundColor },
             styles.IconButton, raised && styles.raised, disabled && (styles.disabled, disabledStyle)]}>
-            <IconComponent name={name} size={size} color={color} />
+            <Icon name={name} size={size} color={color} type={type} />
         </Component>
     )
 };
@@ -60,7 +58,6 @@ IconButton.defaultProps = {
 
 const styles = StyleSheet.create({
     IconButton: {
-        //flex: 1,
         justifyContent: "center",
         alignItems: "center"
     },

@@ -20,20 +20,20 @@ const Snackbar = (props) => {
 
     const durationValues = {
         visible: 225,
-        inVisible: 195 
+        inVisible: 195
     }
 
     const positionValue = (
-        position == "bottom" ? { marginBottom: animation, bottom: 0} : 
-        position == "top" ? {marginTop: animation, top: 0} : null
+        position == "bottom" ? { marginBottom: animation, bottom: 0 } :
+            position == "top" ? { marginTop: animation, top: 0 } : null
     );
 
     useEffect(() => {
-            Animated.timing(animation, {
-                toValue: visible ? (Platform.OS === "android" ? 20 : 0) : -100,
-                duration: visible ? durationValues.visible : durationValues.inVisible,
-                easing: Easing.linear
-            }).start();
+        Animated.timing(animation, {
+            toValue: visible ? (Platform.OS === "android" ? 20 : 0) : -100,
+            duration: visible ? durationValues.visible : durationValues.inVisible,
+            easing: Easing.linear
+        }).start();
     }, [visible]);
 
     return (
@@ -59,12 +59,12 @@ Snackbar.propTypes = {
 
 Snackbar.defaultProps = {
     text: "",
-    textStyle: {color: "#ffffffde", fontSize: 14},
+    textStyle: { color: "#ffffffde", fontSize: 14 },
     backgroundColor: "#000000dd",
     position: "bottom",
-    actionOnPress: () => {},
+    actionOnPress: () => { },
     actionText: "ACTION",
-    actionTextStyle: { color: "#BB86FC", fontSize: 14},
+    actionTextStyle: { color: "#BB86FC", fontSize: 14 },
     actionStyle: {},
 };
 

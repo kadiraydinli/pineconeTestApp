@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text as RNText } from 'react-native';
-import {Colors} from '../config';
+import { Colors } from '../config';
 
 const Text = props => {
   const {

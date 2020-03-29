@@ -1,7 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
-import { SafeAreaView, StyleSheet, View, StatusBar, Image, Platform, TouchableOpacity} from 'react-native';
-import { Text, Badge, Avatar, Divider, Button, Card, Modal, Slider, Clock, ProgressBar, Snackbar, Toast, 
-    Header, IconButton, Fab, Input } from './pinecone/src';
+import React, { useState, useEffect, useRef } from 'react';
+import { SafeAreaView, StyleSheet, View, StatusBar, Image, Platform, TouchableOpacity } from 'react-native';
+import {
+  Text, Badge, Avatar, Divider, Button, Card, Modal, Slider, Clock, ProgressBar, Snackbar, Toast,
+  Header, IconButton, Fab, Input, Icon
+} from './pinecone/src';
 import * as Progress from 'react-native-progress';
 import { TextInput } from 'react-native-paper';
 
@@ -19,19 +21,21 @@ const App = (props) => {
   });
 
   const action = [{ icon: "facebook", label: "fabeook", backgroundColor: "#4A6CA7", onPress: () => alert("samet"), iconColor: "white" },
-  { icon: "twitter", backgroundColor: "#00B9EF", iconColor: "white", iconProps: {onLongPress: () => alert("sdkfş")} },
-    { icon: "tumblr", backgroundColor: "#000000", iconColor: "white"},
-    { icon: "instagram", backgroundColor: "#6091B2", iconColor: "white"}, 
-    { icon: "twitch", backgroundColor: "#7A56B2", iconColor: "white"},
-    { icon: "github", backgroundColor: "#000000", iconColor: "white", onPress: () => alert("fgfkl")},
-    { icon: "gitlab", backgroundColor: "#ED5C38", iconColor: "white"}]
+  { icon: "twitter", backgroundColor: "#00B9EF", iconColor: "white", iconProps: { onLongPress: () => alert("sdkfş") } },
+  { icon: "tumblr", backgroundColor: "#000000", iconColor: "white" },
+  { icon: "instagram", backgroundColor: "#6091B2", iconColor: "white" },
+  { icon: "twitch", backgroundColor: "#7A56B2", iconColor: "white" },
+  { icon: "github", backgroundColor: "#000000", iconColor: "white", onPress: () => alert("fgfkl") },
+  { icon: "gitlab", backgroundColor: "#ED5C38", iconColor: "white" }]
 
   return (
     <SafeAreaView style={styles.container}>
       <Toast text="kadir" ref={toast} />
-      <Avatar icon={{name: "facebook", color:"black"}} avatarMini={<Badge value="11" />} />
-      <View style={{width: "90%"}}>
-        <Button title="tık" onPress={() => toast.show("kadir", "aydınlı")} />
+      <Avatar icon={{ name: "facebook", color: "red" }} backgroundColor="blue" avatarMini={<Badge value="11" />} />
+      <View style={{ width: "90%" }}>
+        <Button iconLeft={{ name: "home", color: "red" }}
+          iconRight={{ name: "home", color: "white", size: 24 }} type="rounded" title="Buraya Tıkla" onPress={() => { }} />
+          <Divider title="kadir" />
         <Input value={value} onChangeText={value => onChangeText(value)} label="Hop hemşerim nereye?" type="outlined" />
       </View>
     </SafeAreaView>
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   button: {
-    width: '80%',
+    width: '50%',
     paddingTop: 3,
     paddingBottom: 3,
     backgroundColor: '#2E7D32',

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, TouchableOpacity, TouchableHighlight, ActivityIndicator, Platform} from 'react-native';
-import {Text} from '..';
+import { StyleSheet, TouchableOpacity, TouchableHighlight, ActivityIndicator, Platform, View } from 'react-native';
+import { Text, Icon } from '..';
 import Colors from '../config/Colors';
 
 const Button = (props) => {
@@ -12,8 +12,8 @@ const Button = (props) => {
         loading,
         loadingStyle,
         disabled,
-        iconLeft,
-        iconRight,
+        iconLeft, //{name, color, size, type, onPress}
+        iconRight, //{name, color, size, type, onPress}
         onPress,
         onLongPress,
         onLongPressIn,
@@ -33,16 +33,18 @@ const Button = (props) => {
     } = props;
 
     const selected = (
-        StyleSheet.flatten([primary && {backgroundColor: Colors.primary}, success && {backgroundColor: Colors.success},
-            info && {backgroundColor: Colors.info}, warning && {backgroundColor: Colors.warning},
-            danger && {backgroundColor: Colors.danger}])
+        StyleSheet.flatten([primary && { backgroundColor: Colors.primary }, success && { backgroundColor: Colors.success },
+        info && { backgroundColor: Colors.info }, warning && { backgroundColor: Colors.warning },
+        danger && { backgroundColor: Colors.danger }])
     );
-    
+
     const shadowValue = (
-        typeof shadow === 'number' ? {...Platform.select({
-            android: {elevation: shadow},
-            default: { shadowOffSet: { 1: 1 }}
-        })} : typeof shadow === 'boolean' ? styles.shadow : null
+        typeof shadow === 'number' ? {
+            ...Platform.select({
+                android: { elevation: shadow },
+                default: { shadowOffSet: { 1: 1 } }
+            })
+        } : typeof shadow === 'boolean' ? styles.shadow : null
     )
 
     let STYLES = {
@@ -61,24 +63,31 @@ const Button = (props) => {
         },
     }
 
-    return(
+    return (
         <Component disabled={disabled} style={StyleSheet.flatten([STYLES.button,
-            type == "default" && styles.default, type == "transparent" && styles.transparent,
-            type == "outline" && STYLES.outline, type == "rounded" && styles.rounded,
-            size == "small" && styles.small, size == "medium" && styles.medium,
-            size == "large" && styles.large, shadowValue, selected, style
+        type == "default" && styles.default, type == "transparent" && styles.transparent,
+        type == "outline" && STYLES.outline, type == "rounded" && styles.rounded,
+        size == "small" && styles.small, size == "medium" && styles.medium,
+        size == "large" && styles.large, shadowValue, selected, style
         ])} onPress={!loading ? onPress : null}
-            onLongPress={!loading ? onLongPress : null} onShowUnderlay={onLongPressIn} 
+            onLongPress={!loading ? onLongPress : null} onShowUnderlay={onLongPressIn}
             onHideUnderlay={onLongPressOut} activeOpacity={opacity} underlayColor={underlayColor}>
-                {loading ? (
-                    <ActivityIndicator {...loadingStyle} animating={true} />
-                ) : (
-                    <Text style={StyleSheet.flatten([{color: "white" }, 
-                    size == "small" && styles.smallText,
-                    size == "medium" && styles.mediumText,
-                    size == "large" && styles.largeText,
-                    type == "outline" && {color: color},
-                    type == "transparent" && {color: color}, titleStyle])}>{title}</Text>
+            {loading ? (
+                <ActivityIndicator {...loadingStyle} animating={true} />
+            ) : (
+                    <>
+                        {iconLeft &&
+                            <Icon name={iconLeft.name} color={iconLeft.color ? iconLeft.color : "white"} size={iconLeft.size}
+                                type={iconLeft.type} style={{ right: 5 }} />}
+                        <Text style={StyleSheet.flatten([{ color: "white" },
+                        size == "small" && styles.smallText,
+                        size == "medium" && styles.mediumText,
+                        size == "large" && styles.largeText,
+                        type == "outline" && { color: color },
+                        type == "transparent" && { color: color }, titleStyle])}>{title}</Text>
+                        {iconRight && <Icon name={iconRight.name} color={iconRight.color ? iconRight.color : "white"} size={iconRight.size}
+                            type={iconRight.type} style={{ left: 5 }} />}
+                    </>
                 )}
         </Component>
     )
@@ -117,8 +126,6 @@ Button.defaultProps = {
     loading: false,
     loadingStyle: {},
     disabled: false,
-    iconLeft: {},
-    iconRight: {},
     shadow: 0,
     opacity: 0.8,
     color: "blue",
@@ -133,14 +140,8 @@ Button.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    /*button: {
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 5,
-        padding: 10,
-        backgroundColor: "blue"
-    },*/
+    button: {
+    },
     shadow: {
         ...Platform.select({
             android: {

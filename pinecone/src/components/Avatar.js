@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Image, TouchableOpacity, View} from 'react-native';
-import { Text, IconButton } from '..';
+import { StyleSheet, Image, TouchableOpacity, View } from 'react-native';
+import { Text, Icon } from '..';
 
 const avatarSizes = {
     small: 50,
@@ -19,6 +19,7 @@ const Avatar = (props) => {
         valueStyle,
         icon, //{name, color, size, type}
         avatarStyle,
+        backgroundColor,
         type,
         avatarMini,
         avatarMiniPosition,
@@ -38,24 +39,24 @@ const Avatar = (props) => {
     const avatarMiniStyle = { width: width / 3, height: width / 3, position: "absolute" };
 
     const avatarMiniPositionStyle = [
-        avatarMiniPosition == "topLeft" && { alignSelf: "flex-start", top: 0},
-        avatarMiniPosition == "topRight" && { alignSelf: "flex-end", top: 0}, 
-        avatarMiniPosition == "bottomLeft" && { alignSelf: "flex-start", bottom: 0}, 
-        avatarMiniPosition == "bottomRight" && { alignSelf: "flex-end", bottom: 0},
+        avatarMiniPosition == "topLeft" && { alignSelf: "flex-start", top: 0 },
+        avatarMiniPosition == "topRight" && { alignSelf: "flex-end", top: 0 },
+        avatarMiniPosition == "bottomLeft" && { alignSelf: "flex-start", bottom: 0 },
+        avatarMiniPosition == "bottomRight" && { alignSelf: "flex-end", bottom: 0 },
     ];
-    
-    const selectedComponent = (
-        (value && (<Text fontSize={fontSize} color="white" style={valueStyle}>{value}</Text>) || 
-            source && (<Image source={source} style={
-                StyleSheet.flatten([{width: width, height: width}, selectedType, avatarStyle])} />) ||
-            icon && (<IconButton name={icon.name} color={icon.color} size={width} type={icon.type} />))
-    );
 
-    return(
-        <Component onPress={onPress} 
-            style={StyleSheet.flatten([styles.Avatar, {width: width, height: width}, selectedType, style])}>
+    const selectedComponent = [
+        value && (<Text key={0} fontSize={fontSize} color="white" style={valueStyle}>{value}</Text>),
+        icon && (<Icon key={1} name={icon.name} color={icon.color} size={icon.size ? icon.size : width / 2} type={icon.type} />),
+        source && (<Image key={2} source={source} style={
+            StyleSheet.flatten([{ width: width, height: width }, selectedType, avatarStyle])} />)
+    ];
+
+    return (
+        <Component onPress={onPress}
+            style={StyleSheet.flatten([styles.Avatar, { width: width, height: width, backgroundColor: backgroundColor }, selectedType, style])}>
             {selectedComponent}
-            <MiniComponent onPress={avatarMiniOnPress} 
+            <MiniComponent onPress={avatarMiniOnPress}
                 style={[avatarMiniStyle, avatarMiniPositionStyle]}>{avatarMini}</MiniComponent>
         </Component>
     )
@@ -70,6 +71,7 @@ Avatar.propTypes = {
     valueStyle: PropTypes.object,
     icon: PropTypes.object,
     avatarStyle: PropTypes.object,
+    backgroundColor: PropTypes.string,
     type: PropTypes.oneOf(["square", "rounded"]),
     avatarMini: PropTypes.element,
     avatarMiniPosition: PropTypes.string,
@@ -79,11 +81,8 @@ Avatar.propTypes = {
 };
 
 Avatar.defaultProps = {
-    source: {},
     size: "medium",
-    value: "",
     valueStyle: {},
-    icon: {},
     avatarStyle: {},
     type: "rounded",
     avatarMiniPosition: "bottomRight",
