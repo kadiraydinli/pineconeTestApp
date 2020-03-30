@@ -21,7 +21,7 @@ const IconButton = (props) => {
         privateSize, //{x, y}
     } = props;
 
-    const privateSizeValue = privateSize ? privateSize.size : size * 2;
+    const privateSizeValue = privateSize ? privateSize : size * 2;
 
     return (
         <Component disabled={disabled} onPress={onPress} onLongPress={onLongPress} underlayColor={onLongPressUnderlayColor}

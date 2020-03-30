@@ -22,8 +22,8 @@ const Input = (props) => {
         maxLength,
         disabled,
         disabledColor,
-        iconLeft, //{name, color, size, type, onPress}
-        iconRight, //{name, color, size, type, onPress}
+        leftIcon, //{name, color, size, type, onPress}
+        rightIcon, //{name, color, size, type, onPress}
         ...rest
     } = props;
 
@@ -53,7 +53,7 @@ const Input = (props) => {
 
     const labelPosition = {
         position: "absolute",
-        left: iconLeft ? (type === "outlined" && isFocused ? 12 : 36) : 12,
+        left: leftIcon ? (type === "outlined" && isFocused ? 12 : 36) : 12,
         top: animation.interpolate({
             inputRange: [0, 1],
             outputRange: [13, type === "outlined" ? -12 : 0]
@@ -108,8 +108,8 @@ const Input = (props) => {
                     </Animated.Text>
                 </Animated.View>
                 <View style={styles.body}>
-                    {iconLeft && <IconButton name={iconLeft.name} color={!disabled ? (errorText ? editedColor : iconLeft.color) : disabledColor} privateSize={24} size={24}
-                        type={iconLeft.type} onPress={iconLeft.onPress} />}
+                    {leftIcon && <IconButton name={leftIcon.name} color={!disabled ? (errorText ? editedColor : leftIcon.color) : disabledColor} privateSize={24} size={24}
+                        type={leftIcon.type} onPress={leftIcon.onPress} />}
                     <TextInput
                         {...rest}
                         placeholder={!isFocused ? "" : placeholder}
@@ -123,8 +123,8 @@ const Input = (props) => {
                         maxLength={maxLength}
                         blurOnSubmit
                     />
-                    {iconRight && <IconButton name={iconRight.name} color={!disabled ? (errorText ? editedColor : iconRight.color) : disabledColor} privateSize={24} size={24}
-                        type={iconRight.type} onPress={iconRight.onPress} />}
+                    {rightIcon && <IconButton name={rightIcon.name} color={!disabled ? (errorText ? editedColor : rightIcon.color) : disabledColor} privateSize={24} size={24}
+                        type={rightIcon.type} onPress={rightIcon.onPress} />}
                 </View>
             </Animated.View>
             <View style={{ flexDirection: "row", justifyContent: "space-between", paddingLeft: 12, paddingRight: 8 }}>
@@ -153,8 +153,8 @@ Input.propTypes = {
     maxLength: PropTypes.number,
     disabled: PropTypes.bool,
     disabledColor: PropTypes.string,
-    iconLeft: PropTypes.object,
-    iconRight: PropTypes.object,
+    leftIcon: PropTypes.object,
+    rightIcon: PropTypes.object,
 };
 
 Input.defaultProps = {

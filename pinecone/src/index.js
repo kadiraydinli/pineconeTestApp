@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import Icon from "./components/Icon";
 import IconButton from "./components/IconButton";
 import Fab from "./components/Fab";
+import ListItem from "./components/ListItem";
 
 import Slider from "./components/Slider";
 import Clock from "./components/Clock";
@@ -33,6 +34,7 @@ export {
     Icon,
     IconButton,
     Fab,
+    ListItem,
     Slider,
     Clock
 };

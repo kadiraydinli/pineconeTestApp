@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, TouchableOpacity, TouchableHighlight, ActivityIndicator, Platform, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, TouchableHighlight, ActivityIndicator, Platform } from 'react-native';
 import { Text, Icon } from '..';
 import Colors from '../config/Colors';
 
@@ -12,8 +12,8 @@ const Button = (props) => {
         loading,
         loadingStyle,
         disabled,
-        iconLeft, //{name, color, size, type, onPress}
-        iconRight, //{name, color, size, type, onPress}
+        leftIcon, //{name, color, size, type, onPress}
+        rightIcon, //{name, color, size, type, onPress}
         onPress,
         onLongPress,
         onLongPressIn,
@@ -76,17 +76,17 @@ const Button = (props) => {
                 <ActivityIndicator {...loadingStyle} animating={true} />
             ) : (
                     <>
-                        {iconLeft &&
-                            <Icon name={iconLeft.name} color={iconLeft.color ? iconLeft.color : "white"} size={iconLeft.size}
-                                type={iconLeft.type} style={{ right: 5 }} />}
+                        {leftIcon &&
+                            <Icon name={leftIcon.name} color={leftIcon.color ? leftIcon.color : "white"} size={leftIcon.size}
+                                type={leftIcon.type} style={{ right: 5 }} />}
                         <Text style={StyleSheet.flatten([{ color: "white" },
                         size == "small" && styles.smallText,
                         size == "medium" && styles.mediumText,
                         size == "large" && styles.largeText,
                         type == "outline" && { color: color },
                         type == "transparent" && { color: color }, titleStyle])}>{title}</Text>
-                        {iconRight && <Icon name={iconRight.name} color={iconRight.color ? iconRight.color : "white"} size={iconRight.size}
-                            type={iconRight.type} style={{ left: 5 }} />}
+                        {rightIcon && <Icon name={rightIcon.name} color={rightIcon.color ? rightIcon.color : "white"} size={rightIcon.size}
+                            type={rightIcon.type} style={{ left: 5 }} />}
                     </>
                 )}
         </Component>
@@ -100,8 +100,8 @@ Button.propTypes = {
     loading: PropTypes.bool,
     loadingStyle: PropTypes.object,
     disabled: PropTypes.bool,
-    iconLeft: PropTypes.object,
-    iconRight: PropTypes.object,
+    leftIcon: PropTypes.object,
+    rightIcon: PropTypes.object,
     onPress: PropTypes.func,
     onLongPress: PropTypes.func,
     onLongPressIn: PropTypes.func,

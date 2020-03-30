@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Image, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Image, TouchableHighlight, View } from 'react-native';
 import { Text, Icon } from '..';
 
 const avatarSizes = {
@@ -13,7 +13,7 @@ const Avatar = (props) => {
     const {
         source,
         onPress,
-        Component = onPress ? TouchableOpacity : View,
+        Component = onPress ? TouchableHighlight : View,
         size,
         value,
         valueStyle,
@@ -24,11 +24,11 @@ const Avatar = (props) => {
         avatarMini,
         avatarMiniPosition,
         avatarMiniOnPress,
-        MiniComponent = avatarMiniOnPress ? TouchableOpacity : View,
+        MiniComponent = avatarMiniOnPress ? TouchableHighlight : View,
         style,
     } = props;
 
-    const width = size ? avatarSizes[size] : 50;
+    const width = size ? typeof size === 'number' ? size : avatarSizes[size] : 50;
     const fontSize = width / 2;
 
     const selectedType = [
@@ -53,11 +53,14 @@ const Avatar = (props) => {
     ];
 
     return (
-        <Component onPress={onPress}
-            style={StyleSheet.flatten([styles.Avatar, { width: width, height: width, backgroundColor: backgroundColor }, selectedType, style])}>
-            {selectedComponent}
-            <MiniComponent onPress={avatarMiniOnPress}
-                style={[avatarMiniStyle, avatarMiniPositionStyle]}>{avatarMini}</MiniComponent>
+        <Component onPress={() => alert("kdlsfş")}
+            style={StyleSheet.flatten([styles.Avatar, { width: width, height: width, backgroundColor: backgroundColor }, 
+                selectedType, style])}>
+            <>
+                {selectedComponent}
+                <MiniComponent onPress={avatarMiniOnPress}
+                    style={[avatarMiniStyle, avatarMiniPositionStyle]}>{avatarMini}</MiniComponent>
+            </>
         </Component>
     )
 };
@@ -65,8 +68,9 @@ const Avatar = (props) => {
 Avatar.propTypes = {
     source: Image.propTypes.source,
     onPress: PropTypes.func,
-    Component: PropTypes.oneOf([View, TouchableOpacity]),
-    size: PropTypes.oneOf(["small", "medium", "large"]),
+    Component: PropTypes.oneOf([View, TouchableHighlight]),
+    size: PropTypes.oneOf(["small", "medium", "large", PropTypes.number]),
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     value: PropTypes.string,
     valueStyle: PropTypes.object,
     icon: PropTypes.object,
@@ -76,7 +80,7 @@ Avatar.propTypes = {
     avatarMini: PropTypes.element,
     avatarMiniPosition: PropTypes.string,
     avatarMiniOnPress: PropTypes.func,
-    MiniComponent: PropTypes.oneOf([View, TouchableOpacity]),
+    MiniComponent: PropTypes.oneOf([View, TouchableHighlight]),
     style: PropTypes.object
 };
 

@@ -17,8 +17,8 @@ const Header = (props) => {
         backgroundColor,
         statusbarColor,
         statusbarProps,
-        iconLeft,
-        iconRight,
+        leftIcon,
+        rightIcon,
         containerStyle,
         leftContainer,
         leftContainerStyle,
@@ -47,8 +47,8 @@ const Header = (props) => {
             <StatusBar backgroundColor={statusbarColor} {...statusbarProps} />
             <View style={[{ backgroundColor: backgroundColor }, styles.Header, containerStyle]}>
                 <View style={[styles.Views, leftContainerStyle]}>
-                    {!leftContainer && iconLeft ?
-                        (<IconButton {...iconLeft} />) :
+                    {!leftContainer && leftIcon ?
+                        (<IconButton {...leftIcon} />) :
                         (leftContainer)}
                 </View>
                 <View style={[{ justifyContent: "center", alignItems: centerPlacementValue }, centerContainerStyle]}>
@@ -63,7 +63,7 @@ const Header = (props) => {
                     </>) : (centerContainer)}
                 </View>
                 <View style={[styles.Views, rightContainerStyle]}>
-                    {!rightContainer && iconRight ? (<IconButton {...iconRight} />) :
+                    {!rightContainer && rightIcon ? (<IconButton {...rightIcon} />) :
                         (<>{rightContainer}</>)}
                 </View>
             </View>
@@ -84,8 +84,8 @@ Header.propTypes = {
     backgroundColor: PropTypes.string,
     statusbarColor: PropTypes.string,
     statusbarProps: PropTypes.object,
-    iconLeft: PropTypes.object,
-    iconRight: PropTypes.object,
+    leftIcon: PropTypes.object,
+    rightIcon: PropTypes.object,
     containerStyle: PropTypes.object,
     leftContainer: PropTypes.element,
     leftContainerStyle: PropTypes.object,
@@ -108,8 +108,8 @@ Header.defaultProps = {
     backgroundColor: "white",
     statusbarColor: "white",
     statusbarProps: { barStyle: "dark-content" },
-    iconLeft: null,
-    iconRight: null,
+    leftIcon: null,
+    rightIcon: null,
     containerStyle: {},
     leftContainerStyle: { flex: 1 },
     centerContainerStyle: { flex: 3 },

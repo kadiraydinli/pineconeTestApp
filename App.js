@@ -5,7 +5,8 @@ import {
   Header, IconButton, Fab, Input, Icon
 } from './pinecone/src';
 import * as Progress from 'react-native-progress';
-import { TextInput } from 'react-native-paper';
+//import { List  } from 'react-native-paper';
+import { ListItem } from 'react-native-elements'
 
 const App = (props) => {
   const [visible, setVisible] = useState(false);
@@ -28,15 +29,44 @@ const App = (props) => {
   { icon: "github", backgroundColor: "#000000", iconColor: "white", onPress: () => alert("fgfkl") },
   { icon: "gitlab", backgroundColor: "#ED5C38", iconColor: "white" }]
 
+  const list = [
+    {
+      name: 'Amy Farha',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+      subtitle: 'Vice President'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+      subtitle: 'Vice Chairman'
+    },
+    {
+      name: 'KAdir',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+      subtitle: 'Vice President'
+    },
+    {
+      name: 'Jackson',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+      subtitle: 'Vice Chairman'
+    },
+]
+
   return (
     <SafeAreaView style={styles.container}>
-      <Toast text="kadir" ref={toast} />
-      <Avatar icon={{ name: "facebook", color: "red" }} backgroundColor="blue" avatarMini={<Badge value="11" />} />
+      <Text color="red">Kadi</Text>
+      <Avatar value="KD" backgroundColor="blue" size={70} onPress={() => alert('Avatar')} avatarMini={<Badge value="11" />} />
       <View style={{ width: "90%" }}>
-        <Button iconLeft={{ name: "home", color: "red" }}
-          iconRight={{ name: "home", color: "white", size: 24 }} type="rounded" title="Buraya Tıkla" onPress={() => { }} />
-          <Divider title="kadir" />
-        <Input value={value} onChangeText={value => onChangeText(value)} label="Hop hemşerim nereye?" type="outlined" />
+            {list.map((value, i) => (
+              <ListItem
+                onPress={() => alert(value.name)}
+                roundAvatar
+                avatar={{ uri: value.avatar_url }}
+                key={value.name}
+                title={value.name}
+              />
+            ))
+          }
       </View>
     </SafeAreaView>
   );
