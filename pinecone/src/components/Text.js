@@ -82,7 +82,4 @@ Text.defaultProps = {
   style: {},
 };
 
-const styles = StyleSheet.create({
-});
-
 export default Text;

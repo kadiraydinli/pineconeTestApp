@@ -17,6 +17,7 @@ import ListItem from "./components/ListItem";
 import Slider from "./components/Slider";
 import ImageList from "./components/ImageList";
 import RadioButton from "./components/RadioButton";
+import CheckBox from "./components/CheckBox";
 
 export {
     Text,
@@ -37,5 +38,6 @@ export {
     ListItem,
     Slider,
     ImageList,
-    RadioButton
+    RadioButton,
+    CheckBox
 };

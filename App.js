@@ -2,12 +2,11 @@ import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } f
 import { SafeAreaView, StyleSheet, View, StatusBar, Image, Platform, TextInput } from 'react-native';
 import {
   Text, Badge, Avatar, Divider, Button, Card, Slider as Sliders, Modal, ProgressBar, Snackbar, Toast,
-  Header, IconButton, Fab, Input, Icon, ImageList, RadioButton
+  Header, IconButton, Fab, Input, Icon, ImageList, RadioButton, CheckBox
 } from './pinecone/src';
 import * as Progress from 'react-native-progress';
-import { List, RadioButton as RR  } from 'react-native-paper';
-import { Slider } from 'react-native-elements'
-import RadioForm, { RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import { List, RadioButton as RR } from 'react-native-paper';
+//import { Slider, CheckBox as CK } from 'react-native-elements'
 
 const App = (props) => {
   const [visible, setVisible] = useState(false);
@@ -47,37 +46,25 @@ const App = (props) => {
     },
   ]
 
-  var radio_props = [
-    { label: 'param1 gfdg  fdg fd f fg', value: 0 },
-    { label: 'param1', value: 1 }
-  ];
-
   const images = [
     { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' },
-    { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'},
-    { source: require('./aaa.png'), dimensions: {width: 128, height: 170}}
+    { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' },
+    { source: require('./aaa.png'), dimensions: { width: 128, height: 170 } }
   ]
 
   const radio = [
-    {label: "Kadir ghghg", value: 0},
-    { label: "Aydınlı", value: 1},
-    { label: "Kadir ghghg", value: 2},
-    { label: "Aydınlı", value: 3},
-    { label: "Kadir ghghg", value: 4},
-    { label: "Aydınlı", value: 5}
+    { label: "Kadir ghghg", value: 0 },
+    { label: "Aydınlı", value: 1 },
+    { label: "Kadir ghghg", value: 2 },
+    { label: "Aydınlı", value: 3 },
+    { label: "Kadir ghghg", value: 4 },
+    { label: "Aydınlı", value: 5 }
   ]
 
   return (
     <SafeAreaView style={styles.container}>
       <Text color="red">Kadhir</Text>
-      <RadioButton values={radio} size={20}
-        horizontal={false}
-        labelHorizontal={true} onPress={(aa,ss) => onChangeText(ss)} />
-      <RadioForm
-        radio_props={radio_props}
-        initial={1}
-        onPress={(value, i) => onChangeText(i)}
-      />
+      <CheckBox text="kadir" checked={visible} onPress={() => setVisible(!visible)} />
       <Button title="tıkla" onPress={() => focus()} />
       <View style={{ width: "90%" }}>
         <Text>Value: {value}</Text>
