@@ -17,7 +17,7 @@ const Badge = (props) => {
     } = props;
 
     return (
-        <View style={StyleSheet.flatten([styles.badge, color && { backgroundColor: color },
+        <View style={StyleSheet.flatten([styles.container, color && { backgroundColor: color },
         primary && { backgroundColor: '#2457ff' }, success && { backgroundColor: '#19ff5a' },
         info && { backgroundColor: '#24dbff' }, warning && { backgroundColor: '#ffc619' },
         danger && { backgroundColor: '#c41d1d' }, style])}>
@@ -51,7 +51,7 @@ Badge.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    badge: {
+    container: {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 18,

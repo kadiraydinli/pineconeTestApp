@@ -45,7 +45,7 @@ const Header = (props) => {
     return (
         <>
             <StatusBar backgroundColor={statusbarColor} {...statusbarProps} />
-            <View style={[{ backgroundColor: backgroundColor }, styles.Header, containerStyle]}>
+            <View style={[{ backgroundColor: backgroundColor }, styles.container, containerStyle]}>
                 <View style={[styles.Views, leftContainerStyle]}>
                     {!leftContainer && leftIcon ?
                         (<IconButton {...leftIcon} />) :
@@ -117,7 +117,7 @@ Header.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    Header: {
+    container: {
         width: "100%",
         height: 56,
         flexDirection: "row",

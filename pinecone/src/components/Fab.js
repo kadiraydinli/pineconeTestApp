@@ -73,6 +73,10 @@ const Fab = (props) => {
             duration: 200,
             useNativeDriver: false
         }).start();*/
+        return () => {
+            animation.stopAnimation();
+            activeAnimation.stopAnimation();
+        }
     }, [active]);
 
     const labelStyle = {
@@ -102,7 +106,7 @@ const Fab = (props) => {
     }
 
     return (
-        active ? <View style={[styles.Fab, positionValues]}>
+        active ? <View style={[styles.container, positionValues]}>
             {backgroundAnimation ? <Animated.View style={[STYLES.background]} /> : null}
             {!onPress ? actions.map((value, i) => (
                 <TouchableWithoutFeedback key={i} onPress={value.onPress}>
@@ -164,7 +168,7 @@ Fab.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    Fab: {
+    container: {
         flex: 1,
         position: "absolute",
         justifyContent: "center",

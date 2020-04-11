@@ -34,12 +34,15 @@ const Snackbar = (props) => {
             duration: visible ? durationValues.visible : durationValues.inVisible,
             easing: Easing.linear
         }).start();
+        return () => {
+            animation.stopAnimation();
+        }
     }, [visible]);
 
     return (
-        <Animated.View style={[styles.Snackbar, positionValue]}>
-            <View style={[styles.View, { backgroundColor: backgroundColor }]}>
-                <Text style={[styles.Text, textStyle]}>{text}</Text>
+        <Animated.View style={[styles.container, positionValue]}>
+            <View style={[styles.view, { backgroundColor: backgroundColor }]}>
+                <Text style={[styles.text, textStyle]}>{text}</Text>
                 <Button opacity={0.5} onPress={actionOnPress} title={actionText}
                     type="transparent" style={actionStyle} titleStyle={actionTextStyle} />
             </View>
@@ -69,7 +72,7 @@ Snackbar.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    Snackbar: {
+    container: {
         ...Platform.select({
             android: {
                 width: "95%",
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
         }),
         position: "absolute"
     },
-    View: {
+    view: {
         ...Platform.select({
             android: {
                 borderRadius: 4,
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         padding: 12,
     },
-    Text: {
+    text: {
         flex: 2,
         flexWrap: "wrap",
         alignContent: "stretch"

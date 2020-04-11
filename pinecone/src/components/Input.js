@@ -40,6 +40,9 @@ const Input = (props) => {
             toValue: isFocused || value != '' ? 1 : 0,
             duration: 200
         }).start();
+        return () => {
+            animation.stopAnimation();
+        }
     }, [isFocused]);
 
     handleFocus = () => {
@@ -97,7 +100,7 @@ const Input = (props) => {
     )
 
     return (
-        <View style={[styles.Container]}>
+        <View style={[styles.container]}>
             <Animated.View style={[selectionType, { paddingTop: 5, backgroundColor: backgroundColor }]}>
                 <Animated.View style={labelPosition}>
                     {(type === "outlined" && (isFocused || value.length != 0) && label.length != 0) &&
@@ -170,7 +173,7 @@ Input.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    Container: {
+    container: {
         width: "100%",
         padding: 5,
     },

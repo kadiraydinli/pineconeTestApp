@@ -31,7 +31,7 @@ const Card = (props) => {
 
     return (
         <TouchableOpacity onPress={onPress} {...rest}
-            style={StyleSheet.flatten([styles.Card, { width: widthValue, elevation: shadow }, containerStyle])}>
+            style={StyleSheet.flatten([styles.container, { width: widthValue, elevation: shadow }, containerStyle])}>
             <View>
                 <Image source={image} style={imageStyle} {...rest} />
                 <Text style={[styles.imageTitle, imageTitleStyle]}>{imageTitle}</Text>
@@ -75,7 +75,7 @@ Card.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    Card: {
+    container: {
         alignItems: "center",
         //width: "60%",
         justifyContent: "center",

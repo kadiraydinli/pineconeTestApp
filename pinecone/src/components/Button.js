@@ -140,8 +140,6 @@ Button.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    button: {
-    },
     shadow: {
         ...Platform.select({
             android: {

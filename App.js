@@ -1,25 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { SafeAreaView, StyleSheet, View, StatusBar, Image, Platform, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+import { SafeAreaView, StyleSheet, View, StatusBar, Image, Platform, TextInput } from 'react-native';
 import {
-  Text, Badge, Avatar, Divider, Button, Card, Modal, Slider, Clock, ProgressBar, Snackbar, Toast,
-  Header, IconButton, Fab, Input, Icon
+  Text, Badge, Avatar, Divider, Button, Card, Slider as Sliders, Modal, ProgressBar, Snackbar, Toast,
+  Header, IconButton, Fab, Input, Icon, ImageList, RadioButton
 } from './pinecone/src';
 import * as Progress from 'react-native-progress';
-//import { List  } from 'react-native-paper';
-import { ListItem } from 'react-native-elements'
+import { List, RadioButton as RR  } from 'react-native-paper';
+import { Slider } from 'react-native-elements'
+import RadioForm, { RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
 const App = (props) => {
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState("bottom");
   const [veri, setVeri] = useState(0);
 
-  const [value, onChangeText] = React.useState('');
-
-  const toast = useRef();
-
-  useEffect(() => {
-
-  });
+  const [value, onChangeText] = React.useState(0);
 
   const action = [{ icon: "facebook", label: "fabeook", backgroundColor: "#4A6CA7", onPress: () => alert("samet"), iconColor: "white" },
   { icon: "twitter", backgroundColor: "#00B9EF", iconColor: "white", iconProps: { onLongPress: () => alert("sdkfş") } },
@@ -50,23 +45,42 @@ const App = (props) => {
       avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
       subtitle: 'Vice Chairman'
     },
-]
+  ]
+
+  var radio_props = [
+    { label: 'param1 gfdg  fdg fd f fg', value: 0 },
+    { label: 'param1', value: 1 }
+  ];
+
+  const images = [
+    { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' },
+    { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'},
+    { source: require('./aaa.png'), dimensions: {width: 128, height: 170}}
+  ]
+
+  const radio = [
+    {label: "Kadir ghghg", value: 0},
+    { label: "Aydınlı", value: 1},
+    { label: "Kadir ghghg", value: 2},
+    { label: "Aydınlı", value: 3},
+    { label: "Kadir ghghg", value: 4},
+    { label: "Aydınlı", value: 5}
+  ]
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text color="red">Kadi</Text>
-      <Avatar value="KD" backgroundColor="blue" size={70} onPress={() => alert('Avatar')} avatarMini={<Badge value="11" />} />
+      <Text color="red">Kadhir</Text>
+      <RadioButton values={radio} size={20}
+        horizontal={false}
+        labelHorizontal={true} onPress={(aa,ss) => onChangeText(ss)} />
+      <RadioForm
+        radio_props={radio_props}
+        initial={1}
+        onPress={(value, i) => onChangeText(i)}
+      />
+      <Button title="tıkla" onPress={() => focus()} />
       <View style={{ width: "90%" }}>
-            {list.map((value, i) => (
-              <ListItem
-                onPress={() => alert(value.name)}
-                roundAvatar
-                avatar={{ uri: value.avatar_url }}
-                key={value.name}
-                title={value.name}
-              />
-            ))
-          }
+        <Text>Value: {value}</Text>
       </View>
     </SafeAreaView>
   );
@@ -78,7 +92,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "#F2f2f2"
   },
   button: {
     width: '50%',

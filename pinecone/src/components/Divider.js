@@ -26,7 +26,7 @@ const Divider = (props) => {
     ]
 
     return (
-        <View style={{ flexDirection: "row", width: "100%", alignItems: "center" }}>
+        <View style={styles.container}>
             <View style={StyleSheet.flatten([viewStyle, titlePositionStyle[0][0]])} />
             <Text style={[StyleSheet.flatten([{ color: color }, titleColor && { color: titleColor }, titleStyle])]}>{title}</Text>
             <View style={StyleSheet.flatten([viewStyle, titlePositionStyle[0][1]])} />
@@ -53,6 +53,11 @@ Divider.defaultProps = {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        width: "100%",
+        flexDirection: "row",
+        alignItems: "center"
+    },
     divider: {
         margin: "3.5%",
         //width: "40%",

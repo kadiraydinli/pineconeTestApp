@@ -25,7 +25,7 @@ const Modal = (props) => {
         <RNModal visible={visible} animationType="fade" onRequestClose={onRequestClose} transparent {...rest}>
             <View style={{ flex: 1, justifyContent: "center" }}>
                 <TouchableOpacity activeOpacity={1} style={styles.touch} onPress={onRequestClose} />
-                <View style={StyleSheet.flatten([styles.Modal, {
+                <View style={StyleSheet.flatten([styles.content, {
                     backgroundColor: backgroundColor,
                     borderWidth: borderStyle.thickness, borderRadius: borderStyle.radius,
                     borderColor: borderStyle.color
@@ -58,7 +58,7 @@ Modal.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    Modal: {
+    content: {
         alignSelf: "center",
         justifyContent: "center",
         alignItems: "center",

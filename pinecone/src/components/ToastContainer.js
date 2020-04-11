@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Animated, Easing } from 'react-native';
 import { Text } from '..';
 
-const Toast = (props) => {
+const ToastContainer = forwardRef((props, ref) => {
     const {
         text,
         textStyle,
@@ -16,6 +16,12 @@ const Toast = (props) => {
         ...rest
     } = props;
 
+    useImperativeHandle(ref, () => ({
+        show: (text, textStyle) => {
+            alert(text)
+        }
+    }));
+
     const durationValues = {
         short: 3000,
         long: 7000
@@ -23,6 +29,10 @@ const Toast = (props) => {
 
     const [animation] = useState(new Animated.Value(0));
     const [timer] = useState(new Animated.Value(0));
+
+    function renderText(text) {
+        alert(ref);
+    }
 
     useEffect(() => {
         Animated.timing(animation, {
@@ -39,9 +49,9 @@ const Toast = (props) => {
             <Text style={textStyle}>{text}</Text>
         </Animated.View>
     )
-};
+});
 
-Toast.propTypes = {
+ToastContainer.propTypes = {
     text: PropTypes.string,
     textStyle: PropTypes.object,
     duration: PropTypes.oneOf(["short", "long"]),
@@ -50,7 +60,7 @@ Toast.propTypes = {
     borderRadius: PropTypes.number
 };
 
-Toast.defaultProps = {
+ToastContainer.defaultProps = {
     text: "",
     textStyle: { color: "#ffffffde" },
     duration: "short",
@@ -72,4 +82,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Toast;
+export default ToastContainer;

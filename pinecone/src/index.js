@@ -14,9 +14,9 @@ import Icon from "./components/Icon";
 import IconButton from "./components/IconButton";
 import Fab from "./components/Fab";
 import ListItem from "./components/ListItem";
-
 import Slider from "./components/Slider";
-import Clock from "./components/Clock";
+import ImageList from "./components/ImageList";
+import RadioButton from "./components/RadioButton";
 
 export {
     Text,
@@ -36,5 +36,6 @@ export {
     Fab,
     ListItem,
     Slider,
-    Clock
+    ImageList,
+    RadioButton
 };

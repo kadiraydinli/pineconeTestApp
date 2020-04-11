@@ -57,7 +57,7 @@ const ListItem = (props) => {
     ];
 
     return (
-        <Component style={[styles.ListItem, { borderColor: "#D1D1D6" }, divider]} onPress={onPress} onLongPress={onLongPress} underlayColor={underlayColor}>
+        <Component style={[styles.container, { borderColor: "#D1D1D6" }, divider]} onPress={onPress} onLongPress={onLongPress} underlayColor={underlayColor}>
             <>
                 {(left || leftIcon || leftAvatar) &&
                     <View style={{ marginRight: leftIcon && leftIcon.size <= 24 ? 32 : 16 }}>
@@ -91,7 +91,7 @@ ListItem.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    ListItem: {
+    container: {
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "red",

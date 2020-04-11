@@ -70,6 +70,9 @@ const ProgressBar = (props) => {
                 onComplete();
             }
         }
+        return () => {
+            progressValue.stopAnimation();
+        }
     }, [value]);
 
     const ProgressBarStyle = {

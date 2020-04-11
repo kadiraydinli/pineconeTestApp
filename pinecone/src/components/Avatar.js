@@ -54,7 +54,7 @@ const Avatar = (props) => {
 
     return (
         <Component onPress={() => alert("kdlsfş")}
-            style={StyleSheet.flatten([styles.Avatar, { width: width, height: width, backgroundColor: backgroundColor }, 
+            style={StyleSheet.flatten([styles.container, { width: width, height: width, backgroundColor: backgroundColor }, 
                 selectedType, style])}>
             <>
                 {selectedComponent}
@@ -94,7 +94,7 @@ Avatar.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    Avatar: {
+    container: {
         backgroundColor: "gray",
         justifyContent: "center",
         alignItems: "center",
